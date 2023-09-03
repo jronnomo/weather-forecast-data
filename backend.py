@@ -1,7 +1,11 @@
 import requests
+import os
+from dotenv import load_dotenv
+
 
 def get_data(kind, days, place):
-    api_key = "9bbd3edccdc2acbd3d12fd096c8abd6e"
+    load_dotenv()
+    api_key = os.getenv("API_KEY")
     url = f"http://api.openweathermap.org/data/2.5/forecast?q={place}&units=imperial&appid={api_key}"
     response = requests.get(url)
     data = response.json()
