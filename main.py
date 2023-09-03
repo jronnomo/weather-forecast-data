@@ -16,7 +16,31 @@ try:
 
     dates, values = get_data(kind=option, days=days, place=place)
 
-    figure = px.line(x=dates, y=values, labels={"x": "Date", "y": "Temperature (F)"})
-    st.plotly_chart(figure)
+    if option == "Temperature":
+        figure = px.line(x=dates, y=values, labels={"x": "Date", "y": "Temperature (F)"})
+        st.plotly_chart(figure)
+
+    else:
+        col3, col4, col5, col6 = st.columns(4)
+        with col3:
+            for item in range(0, len(values), 4):
+                st.image(values[item])
+                st.write(dates[item])
+
+        with col4:
+            for item in range(1, len(values), 4):
+                st.image(values[item])
+                st.write(dates[item])
+
+        with col5:
+            for item in range(2, len(values), 4):
+                st.image(values[item])
+                st.write(dates[item])
+
+        with col6:
+            for item in range(3, len(values), 4):
+                st.image(values[item])
+                st.write(dates[item])
+
 except KeyError:
     st.subheader("Please enter a location")
